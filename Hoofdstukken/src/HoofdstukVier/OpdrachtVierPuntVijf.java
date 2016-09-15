@@ -1,4 +1,5 @@
-package HoofdstukVier; /**
+package HoofdstukVier;
+/**
  * Created by romek on 08-09-16.
  */
 import java.awt.*;
