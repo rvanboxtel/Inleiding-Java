@@ -7,15 +7,15 @@ import java.awt.*;
 import java.applet.*;
 
 public class OpdrachtTwee extends Applet {
-    int GewichtE;
-    int GewichtA;
-    int GewichtC;
+    int GewichtJ;
+    int GewichtV;
+    int GewichtH;
     public void init(){
         setBackground(Color.white);
 
-        GewichtE = 195;
-        GewichtA = 110;
-        GewichtC = 150;
+        GewichtJ = 195;
+        GewichtV = 110;
+        GewichtH = 150;
     }
     public void paint(Graphics g){
         g.setColor(Color.black);
@@ -30,11 +30,11 @@ public class OpdrachtTwee extends Applet {
         g.drawString("Kinderen.",35,25);
         g.drawString("Gewicht in kg.     40,       80,       100,",115,24);
         g.setColor(Color.red);
-        g.fillRect(110, 31, GewichtA,20);
+        g.fillRect(110, 31, GewichtV ,20);
         g.setColor(Color.green);
-        g.fillRect(110, 51, GewichtE,20);
+        g.fillRect(110, 51, GewichtJ,20);
         g.setColor(Color.blue);
-        g.fillRect(110, 71, GewichtC,20);
+        g.fillRect(110, 71, GewichtH,20);
 
 
     }
