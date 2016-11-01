@@ -2,7 +2,7 @@ package HoofdstukTwaalf;
 
 import java.applet.Applet;
 import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 /**
  * Created by Romek on 31-10-16.
@@ -32,5 +32,25 @@ public class OpdrachtVijf extends Applet {
     }
 
     class invoerListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+
+            int zoeken = Integer.parseInt(invoer.getText());
+            for (int o = 0; o < nummers.length && gevonden == false; o++) {
+                index++;
+                if (nummers[o] == zoeken) {
+                    gevonden = true;
+                }
+            }
+            if (gevonden == true) {
+                string = "Er is een of meer waarde(s) gevonden onder de index " + index + ".";
+            } else {
+                string = "De waarde is niet gevonden.";
+            }
+            index = -1;
+            invoer.setText("");
+            gevonden = false;
+            repaint();
+        }
     }
 }
