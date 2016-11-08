@@ -2,71 +2,42 @@ package HoofdstukTwaalf;
 
 import java.applet.Applet;
 import java.awt.*;
-import java.util.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 /**
  * Created by Romek on 31-10-16.
  */
 public class OpdrachtDrie extends Applet {
 
-    TextField[] textfields = new TextField[5];
-    Button reset = new Button("Reset");
-    String[] unsorted = new String[textfields.length];
-    String[] sorted = new String[textfields.length];
-    int[] sortInt = new int[textfields.length];
-    int iSrc = 0;
+    TextField[] tekstvelden;
+    int[] getallen;
+    Button ok;
 
     public void init() {
-        setSize(400, 400);
-        for (int i = 0; i < textfields.length; i++) {
-            textfields[i] = new TextField("", 5);
-            add(textfields[i]);
-            textfields[i].addActionListener(new InputListener());
+
+        getallen = new int[5];
+        tekstvelden = new TextField[5];
+
+        for (int i = 0; i < tekstvelden.length; i++) {
+            tekstvelden[i] = new TextField("", 5);
+            add(tekstvelden[i]);
         }
-        add(reset);
-        reset.addActionListener(new ResetListener());
-        for (int i = 0; i < textfields.length; i++) {
-            unsorted[i] = "";
-            sorted[i] = "";
-        }
+        ok = new Button("Oké");
+        ok.addActionListener(new Listener());
+        add(ok);
     }
 
-    public void paint(Graphics g) {
-        int x = getWidth();
-        int y = getHeight();
-
-        for (int i = 0; i < textfields.length; i++) {
-            g.drawString("" + unsorted[i], x / 2 - ((textfields.length / 2) - i) * 50, y / 2 - 20);
-            if (iSrc == textfields.length) {
-                Arrays.sort(sortInt);
-                sorted[i] = "" + sortInt[i];
-                g.drawString("" + sorted[i], x / 2 - ((textfields.length / 2) - i) * 50, y / 2 + 20);
-            }
-        }
-    }
-
-    class InputListener implements ActionListener {
+    class Listener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            TextField src = (TextField) e.getSource();
-            unsorted[iSrc] = "" + Integer.parseInt(src.getText());
-            sortInt[iSrc] = Integer.parseInt(src.getText());
-            iSrc++;
-            repaint();
-        }
-    }
-
-    class ResetListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            for (int i = 0; i < textfields.length; i++) {
-                textfields[i].setText(" ");
-                textfields[i].setText("");
-                sorted[i] = "";
-                unsorted[i] = "";
+            for (int i = 0; i < getallen.length; i++) {
+                getallen[i] = Integer.parseInt(tekstvelden[i].getText());
             }
-            iSrc = 0;
-            textfields[0].requestFocus();
-            repaint();
+            Arrays.sort(getallen);
+            for (int i = 0; i < getallen.length; i++) {
+                tekstvelden[i].setText("" + getallen[i]);
+            }
         }
     }
 
